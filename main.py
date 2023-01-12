@@ -3,8 +3,28 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def index():
+    return render_template("index.html")
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/select", methods=['GET'])
+def display_IMG():
+    ids = os.listdir('static/IMG')
+    
+    paths = ['IMG/' + i for i in ids]
+    ids = [i.replace('.png', '') for i in ids]
+    
+    return render_template("select.html", ids=ids, paths=paths)
+
+@app.route("/play", methods=["POST"])
+def submit():
+    data = request.get_json()
+    use = data['use']
+    print(use)
+    return jsonify({'use': use})
+
+
+@app.route("/action", methods=['GET', 'POST'])
 def display_IMG():
     result = "konntya"
     return render_template("play.html")
