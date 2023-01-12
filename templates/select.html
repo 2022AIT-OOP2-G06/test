@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="{{ url_for('static', filename='js/select.js') }}"></script>
+    <link defer rel= "stylesheet" type= "text/css"  href="{{ url_for('static',filename='css/select.css') }}">
+
+    <title>Select</title>
+    <link rel= "stylesheet" type= "text/css"  href= "{{ url_for('static',filename='css/select.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="input">
+        <form action="/play" method="POST">
+            <ul>
+                {% for path in paths %}{% set paths_loop = loop %}
+                {% for id in ids %}{% if loop.index==paths_loop.index %}
+    
+                <li><img id="{{ id }}" src = "{{ url_for('static', filename=path)}}" width="180px">
+    
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </ul>
+            <div class="player">
+                <label for="your_name">トレーナー名 </label>
+                <input placeholder="名前" type="text" id="name" name="your_name">
+                <button id="start_button">ゲームスタート！！</button>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>
