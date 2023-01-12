@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>戦闘</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/play.css') }}">
+  <script src="{{ url_for('static', filename='js/play.js') }}"></script>
+</head>
+<body>
+  <main>
+    <form action="/action" method="POST">
+      <fieldset id="janken_hand">
+        <input type="hidden" id="my_monster" value="my" name="my_monster">
+        <label for="hand_rock"><img src="{{ url_for('static', filename='janken_gu.png') }}" alt="my" width="150"></label>
+        <input type="hidden" id="enemy_monster" value="enemy" name="enemy_monster">
+        <label for="hand_scissor"><img src="{{ url_for('static', filename='janken_choki.png') }}" alt="enemy" width="150"></label>
+      </fieldset>
+      <div class="message">
+        <message class="maaage_input">
+          <p>{{ res }}</p>
+        </message>
+      </div>
+      <div class="commands">
+        <battle class="skill_input">
+        <button type="submit" id="skill1_reception" name="send" value="skill1">攻撃</button>
+        <button type="submit" id="skill2_reception" name="send" value="skill2">必殺技 </button>
+        <button type="submit" id="skill3_reception" name="send" value="skill3">変化技</button>
+        <button type="submit" id="skill4_reception" name="send" value="skill4">交換 </button>
+      </battle>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
